@@ -31,9 +31,10 @@ function AppNavigation(props) {
             flexShrink: 0,
             overflowX: "hidden"
         },
+            /*background: "linear-gradient(45deg, #4316A6 30%, #5207F2 90%)",*/
         drawerPaper: {
             width: drawerWidth,
-            background: "linear-gradient(45deg, #4316A6 30%, #5207F2 90%)",
+            background:"linear- gradient(45deg, #97cdd3 30 %, #32b0ce 90 %)"
             overflowX: "hidden"
         },
         toolbar: theme.mixins.toolbar,

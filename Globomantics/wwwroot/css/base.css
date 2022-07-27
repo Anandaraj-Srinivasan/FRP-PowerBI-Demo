@@ -8,7 +8,8 @@ a, a:hover, a:focus, a:active {
 }
 
 span.nav-logo {
-    background-image: url('../images/nav_logo_horizontal.png');
+    /*background-image: url('../images/nav_logo_horizontal.png');*/
+    background-image: url('../images/logo-maersk.png');
     background-repeat: no-repeat;
     background-size: contain;
     height: 40px;
@@ -33,7 +34,8 @@ span.nav-logo-small {
 #login {
     width: 100%;
     height: 100vh;
-    background: linear-gradient(45deg, #4316A6 30%, #5207F2 90%);
+    /*background: linear-gradient(45deg, #4316A6 30%, #5207F2 90%);*/
+    background: linear-gradient(45deg, #97cdd3 30%, #32b0ce 90%);
 }
 
     #login .centered {
@@ -48,7 +50,8 @@ span.nav-logo-small {
 
         #login .centered h1 {
             font-size: 0;
-            background-image: url('../images/nav_logo_horizontal.png');
+            /*background-image: url('../images/nav_logo_horizontal.png');*/
+            background-image: url('../images/logo-maersk.png');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: contain;
