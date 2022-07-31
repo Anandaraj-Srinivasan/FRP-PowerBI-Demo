@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var styles_1 = require("@material-ui/core/styles");
 var DarkTheme = /** @class */ (function () {
     function DarkTheme() {
-        this.theme = styles_1.createMuiTheme({
+        this.theme = (0, styles_1.createMuiTheme)({
             palette: {
                 type: "dark",
                 primary: { main: "#f7f7f7" },

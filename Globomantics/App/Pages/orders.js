@@ -18,7 +18,7 @@ var TablePagination_1 = __importDefault(require("@material-ui/core/TablePaginati
 var Button_1 = __importDefault(require("@material-ui/core/Button"));
 var Box_1 = __importDefault(require("@material-ui/core/Box"));
 function Orders(props) {
-    var useStyles = styles_1.makeStyles(function (theme) { return ({
+    var useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
         paper: {
             background: theme.palette.type == "light" ? "#fff" : "#474747"
         },

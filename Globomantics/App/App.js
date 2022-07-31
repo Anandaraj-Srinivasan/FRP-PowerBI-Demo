@@ -12,7 +12,11 @@ var __assign = (this && this.__assign) || function () {
 };
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -53,18 +57,18 @@ var dark_1 = __importDefault(require("./theme/dark"));
 var defaultTheme = new default_1.default().theme;
 var darkTheme = new dark_1.default().theme;
 function App(props) {
-    var useStyles = styles_1.makeStyles(function (theme) { return ({
+    var useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
         main: {
             marginLeft: navigationWidth,
             padding: 15
         }
     }); });
-    var _a = react_1.useState(defaultTheme), theme = _a[0], setTheme = _a[1];
+    var _a = (0, react_1.useState)(defaultTheme), theme = _a[0], setTheme = _a[1];
     var toggleTheme = function () {
         var newTheme = theme.palette.type === "light" ? darkTheme : defaultTheme;
         setTheme(newTheme);
     };
-    var matches = useMediaQuery_1.default(theme.breakpoints.up("md"));
+    var matches = (0, useMediaQuery_1.default)(theme.breakpoints.up("md"));
     var navigationWidth = matches ? 240 : 60;
     var classes = useStyles(theme);
     return (react_1.default.createElement(styles_1.MuiThemeProvider, { theme: theme },

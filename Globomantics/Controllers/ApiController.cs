@@ -2,6 +2,7 @@
 using Globomantics.PowerBI.Interfaces;
 using Globomantics.PowerBI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
 
 namespace Globomantics.Controllers
@@ -12,16 +13,19 @@ namespace Globomantics.Controllers
         private readonly IReportEmbedding _reportEmbedding;
         private readonly IDashboardEmbedding _dashboardEmbedding;
         private readonly ITileEmbedding _tileEmbedding;
+        private IConfiguration _configuration;
 
         public ApiController(IAzureTokenGenerator tokenGenerator, 
             IReportEmbedding reportEmbedding,
             IDashboardEmbedding dashboardEmbedding,
-            ITileEmbedding tileEmbedding)
+            ITileEmbedding tileEmbedding,
+            IConfiguration configuration)
         {
             _tokenGenerator = tokenGenerator;
             _reportEmbedding = reportEmbedding;
             _dashboardEmbedding = dashboardEmbedding;
             _tileEmbedding = tileEmbedding;
+            _configuration = configuration;
         }
 
         [HttpPost]
@@ -29,7 +33,7 @@ namespace Globomantics.Controllers
         public async Task<ActionResult<EmbedModel>> GetReportEmbedModel(
             [FromBody]ReportRequest reportRequest)
         {
-            reportRequest.ReportName = "TeamsAttendanceReport";
+            reportRequest.ReportName = _configuration.GetValue<string>("WorkspaceConfiguration:ReportName");             
 
             var azureAdToken = await _tokenGenerator.GetAndCacheAuthToken();
             var embedModel = 
@@ -42,8 +46,8 @@ namespace Globomantics.Controllers
         [Route("api/embedding/dashboard")]
         public async Task<ActionResult<EmbedModel>> GetDashboardEmbedModel(
             [FromBody]DashboardRequest dashboardRequest)
-        {
-            dashboardRequest.DashboardName = "TeamsAttendanceReport.pbix";
+        {            
+            dashboardRequest.DashboardName = _configuration.GetValue<string>("WorkspaceConfiguration:DashboardName");            
 
             var azureAdToken = await _tokenGenerator.GetAndCacheAuthToken();
 

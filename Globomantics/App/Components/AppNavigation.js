@@ -18,12 +18,12 @@ var Home_1 = __importDefault(require("@material-ui/icons/Home"));
 var LocalShipping_1 = __importDefault(require("@material-ui/icons/LocalShipping"));
 var react_router_dom_1 = require("react-router-dom");
 function AppNavigation(props) {
-    var useStyles = styles_1.makeStyles(function (theme) { return ({
+    var useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
         root: {
             display: "flex"
         },
         appBar: {
-            width: "calc(100% - " + drawerWidth + "px)",
+            width: "calc(100% - ".concat(drawerWidth, "px)"),
             marginLeft: drawerWidth
         },
         drawer: {
@@ -31,10 +31,10 @@ function AppNavigation(props) {
             flexShrink: 0,
             overflowX: "hidden"
         },
-            /*background: "linear-gradient(45deg, #4316A6 30%, #5207F2 90%)",*/
+        /*background: "linear-gradient(45deg, #4316A6 30%, #5207F2 90%)",*/
         drawerPaper: {
             width: drawerWidth,
-            background:"linear- gradient(45deg, #97cdd3 30 %, #32b0ce 90 %)"
+            background: "linear-gradient(45deg, #97cdd3 30 %, #32b0ce 90 %)",
             overflowX: "hidden"
         },
         toolbar: theme.mixins.toolbar,
@@ -55,8 +55,9 @@ function AppNavigation(props) {
     return (react_1.default.createElement(Drawer_1.default, { className: classes.drawer, variant: "permanent", classes: {
             paper: classes.drawerPaper
         }, anchor: "left" },
+        "aria-label=\"Globomantics Logo\"",
         react_1.default.createElement("div", { className: classes.toolbar },
-            react_1.default.createElement("span", { className: drawerWidth > 60 ? "nav-logo" : "nav-logo-small", "aria-label": "Globomantics Logo" }, "Globomantics")),
+            react_1.default.createElement("span", { className: drawerWidth > 60 ? "nav-logo" : "nav-logo-small", "aria-label": "Maersk Logo" }, "A.P.Maersk")),
         react_1.default.createElement(Divider_1.default, null),
         react_1.default.createElement(List_1.default, null,
             react_1.default.createElement(react_router_dom_1.Link, { to: "/" },

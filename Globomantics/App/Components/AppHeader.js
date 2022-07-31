@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -37,7 +41,7 @@ var Grid_1 = __importDefault(require("@material-ui/core/Grid"));
 var core_1 = require("@material-ui/core");
 var Divider_1 = __importDefault(require("@material-ui/core/Divider"));
 function AppHeader(props) {
-    var useStyles = styles_1.makeStyles(function (theme) {
+    var useStyles = (0, styles_1.makeStyles)(function (theme) {
         var _a, _b;
         return ({
             root: {
@@ -66,9 +70,9 @@ function AppHeader(props) {
                     position: "relative",
                     color: theme.palette.text.primary,
                     borderRadius: theme.shape.borderRadius,
-                    backgroundColor: styles_1.fade(theme.palette.common.black, 0.05),
+                    backgroundColor: (0, styles_1.fade)(theme.palette.common.black, 0.05),
                     "&:hover": {
-                        backgroundColor: styles_1.fade(theme.palette.common.black, 0.15)
+                        backgroundColor: (0, styles_1.fade)(theme.palette.common.black, 0.15)
                     },
                     marginTop: 2,
                     marginLeft: 0,
@@ -105,8 +109,8 @@ function AppHeader(props) {
                 _b)
         });
     });
-    var _a = react_1.useState(false), isOpen = _a[0], setOpen = _a[1];
-    var _b = react_1.useState(null), anchorEl = _b[0], setAnchorEl = _b[1];
+    var _a = (0, react_1.useState)(false), isOpen = _a[0], setOpen = _a[1];
+    var _b = (0, react_1.useState)(null), anchorEl = _b[0], setAnchorEl = _b[1];
     var classes = useStyles(props.theme);
     function handleProfileMenuOpen(event) {
         setAnchorEl(event.currentTarget);
@@ -171,4 +175,4 @@ function AppHeader(props) {
                         react_1.default.createElement(Divider_1.default, null),
                         react_1.default.createElement(MenuItem_1.default, { onClick: function () { return handleLogoutRequest(); } }, "Logout")))))));
 }
-exports.default = react_router_dom_1.withRouter(AppHeader);
+exports.default = (0, react_router_dom_1.withRouter)(AppHeader);

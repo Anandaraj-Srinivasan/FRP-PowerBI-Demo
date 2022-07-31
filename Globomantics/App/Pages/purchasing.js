@@ -32,7 +32,7 @@ var TextField_1 = __importDefault(require("@material-ui/core/TextField"));
 var PowerBITile_1 = __importDefault(require("../Components/PowerBITile"));
 var PowerBISingleVisual_1 = __importDefault(require("../Components/PowerBISingleVisual"));
 function Purchasing(props) {
-    var useStyles = styles_1.makeStyles(function (theme) { return ({
+    var useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
         card: {
             background: theme.palette.type == "light" ? "#fff" : "#474747"
         },

@@ -21,7 +21,7 @@ var Paper_1 = __importDefault(require("@material-ui/core/Paper"));
 var Box_1 = __importDefault(require("@material-ui/core/Box"));
 var PowerBIReport_1 = __importDefault(require("../Components/PowerBIReport"));
 function SalesReports(props) {
-    var useStyles = styles_1.makeStyles(function (theme) { return ({
+    var useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
         paper: {
             background: theme.palette.type == "light" ? "#fff" : "#474747"
         },

@@ -23,42 +23,51 @@ namespace Globomantics.PowerBI.Embedding
             _identityProvider = identityProvider;
         }
 
-        public async Task<EmbedModel> GetEmbeddingDetailsForDashboard(string dashboardName, 
+        public async Task<EmbedModel> GetEmbeddingDetailsForDashboard(string dashboardName,
             string azureADToken)
         {
-            var tokenCredential = new TokenCredentials(azureADToken);
-            using (var pbiClient = new PowerBIClient(tokenCredential))
+            try
             {
-                var dashboards = 
-                    await pbiClient.Dashboards.GetDashboardsInGroupAsync(_workspaceConfiguration.WorkspaceId);
-
-                var dashboard = dashboards.Value.First(x => 
-                        string.Equals(x.DisplayName, dashboardName, System.StringComparison.OrdinalIgnoreCase));
-
-                var datasets = 
-                    await pbiClient.Datasets.GetDatasetsInGroupAsync(_workspaceConfiguration.WorkspaceId);
-
-                var parameters = BuildTokenRequestParameters(datasets.Value);
-
-                var dashboardToken = 
-                    pbiClient.Dashboards.GenerateTokenInGroup(_workspaceConfiguration.WorkspaceId,
-                            dashboard.Id, parameters);
-
-                return new EmbedModel
+                var tokenCredential = new TokenCredentials(azureADToken);
+                using (var pbiClient = new PowerBIClient(tokenCredential))
                 {
-                    Id = dashboard.Id,
-                    EmbedUrl = dashboard.EmbedUrl,
-                    AccessToken = dashboardToken.Token
-                };
+                    var dashboards =
+                        await pbiClient.Dashboards.GetDashboardsInGroupAsync(_workspaceConfiguration.WorkspaceId);
+
+                    var dashboard = dashboards.Value.First(x =>
+                            string.Equals(x.DisplayName, dashboardName, System.StringComparison.OrdinalIgnoreCase));
+
+                    var datasets =
+                        await pbiClient.Datasets.GetDatasetsInGroupAsync(_workspaceConfiguration.WorkspaceId);
+
+                    var parameters = BuildTokenRequestParameters(datasets.Value);
+
+                    var dashboardToken =
+                        pbiClient.Dashboards.GenerateTokenInGroup(_workspaceConfiguration.WorkspaceId,
+                                dashboard.Id, parameters);
+
+                    return new EmbedModel
+                    {
+                        Id = dashboard.Id,
+                        EmbedUrl = dashboard.EmbedUrl,
+                        AccessToken = dashboardToken.Token
+                    };
+                }
             }
+            catch (System.Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
 
         private GenerateTokenRequest BuildTokenRequestParameters(IList<Dataset> datasets)
         {
-            var parameters = new GenerateTokenRequest( accessLevel: "View" );
+            var parameters = new GenerateTokenRequest(accessLevel: "View");
 
-            var rlsEnabledDatasets = 
-                datasets.Where(x => x.IsEffectiveIdentityRequired.HasValue && 
+            var rlsEnabledDatasets =
+                datasets.Where(x => x.IsEffectiveIdentityRequired.HasValue &&
                                 x.IsEffectiveIdentityRequired.Value)
                                 .Select(x => x.Id);
 

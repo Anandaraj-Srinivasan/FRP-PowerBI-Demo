@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var styles_1 = require("@material-ui/core/styles");
 var DefaultTheme = /** @class */ (function () {
     function DefaultTheme() {
-        this.theme = styles_1.createMuiTheme({
+        this.theme = (0, styles_1.createMuiTheme)({
             palette: {
                 type: "light",
                 primary: { main: "#62BEC4" },

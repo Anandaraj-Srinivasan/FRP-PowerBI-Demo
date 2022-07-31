@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -25,13 +29,13 @@ var TileEmbedding_1 = require("./../PowerBI/TileEmbedding");
 function PowerBIDashboard(props) {
     var tileContainer = react_1.default.createRef();
     var tileEmbedding = new TileEmbedding_1.TileEmbedding();
-    var useStyles = styles_1.makeStyles(function (theme) { return ({
+    var useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
         container: {
             height: "100%"
         }
     }); });
     var classes = useStyles(props.theme);
-    react_1.useEffect(function () {
+    (0, react_1.useEffect)(function () {
         tileEmbedding.embedTile(props.dashboardName, props.tileName, tileContainer.current);
     }, []);
     return react_1.default.createElement("div", { ref: tileContainer, className: classes.container });

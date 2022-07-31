@@ -20,7 +20,7 @@ var styles_1 = require("@material-ui/core/styles");
 var Box_1 = __importDefault(require("@material-ui/core/Box"));
 var PowerBIDashboard_1 = __importDefault(require("../Components/PowerBIDashboard"));
 function Home(props) {
-    var useStyles = styles_1.makeStyles(function (theme) { return ({
+    var useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
         paper: {
             background: theme.palette.type == "light" ? "#fff" : "#474747"
         },
