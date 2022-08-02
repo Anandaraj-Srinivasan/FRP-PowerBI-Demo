@@ -1,0 +1,103 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@if (Model.CustomizationEnabled)
+{
+    <div id="toolbar" class="btn-toolbar" role="toolbar">
+        <button type="button" id="toggleEdit" class="btn btn-sm">Toggle Edit Mode</button>
+        <button type="button" id="fullScreen" class="btn btn-sm">Full Screen</button>
+    </div>
+}
+
+<div id="reportContainer"></div>
+
+@section scripts {
+
+    @*<script src="https://cdn.jsdelivr.net/npm/powerbi-client@2.13.3/dist/powerbi.min.js"></script>*@
+    <script src="https://cdn.jsdelivr.net/npm/powerbi-client@2.21.0/dist/powerbi.min.js"></script>
+
+    <script type="text/javascript">
+
+
+        $(() => {
+            var reportContainer = $('#reportContainer');
+
+            var reportUrl = 'https://localhost:44321/api/embedding/report';
+
+            var request = new Request(reportUrl, {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                method: "POST",
+                body: JSON.stringify({ reportName: "sales_v2" })
+            });
+
+
+            fetch(request)
+                .then(response => response.json())
+                .then(report => {
+
+                    let models = window['powerbi-client'].models;
+
+                    let reportConfig = {
+                        type: 'report',
+                        id: report.id,
+                        embedUrl: report.embedUrl,
+                        accessToken: report.accessToken,
+                        permissions: models.Permissions.All,
+                        tokenType: models.TokenType.Embed,
+                        viewMode: models.ViewMode.All,
+                        settings: {
+                            filterPaneEnabled: true,
+                            navContentPaneEnabled: true,
+                            panes: {
+                                filters: { expanded: true, visible: true },
+                                pageNavigation: { visible: true }
+                            }
+                        }
+                    };
+                    let embedContainer = $('#reportContainer')[0];
+                    
+                      // Embed the report and display it within the div container.
+                    let embedReport = powerbi.embed(embedContainer, reportConfig);
+
+                    //Advanced Options
+                    if (customizationEnabled) {
+                        var viewMode = "view";
+                        $("#toggleEdit").click(function() {
+                            // toggle between view and edit mode
+                            viewMode = (viewMode == "view") ? "edit" : "view";
+                            embedReport.switchMode(viewMode);
+                            // show filter pane when entering edit mode
+                            var showFilterPane = (viewMode == "edit");
+                            embedReport.updateSettings({
+                                "filterPaneEnabled": showFilterPane
+                            });
+                        });
+                        $("#fullScreen").click(function() {
+                            embedReport.fullscreen();
+                        });
+                    }
+
+                    // 4 - add logic to resize embed container on window resize event
+                    var heightBuffer = 12;
+                    var newHeight = $(window).height() - ($("header").height() + heightBuffer);
+                    $("#reportContainer").height(newHeight);
+                    $(window).resize(function() {
+                        var newHeight = $(window).height() - ($("header").height() + heightBuffer);
+                        $("#reportContainer").height(newHeight);
+                    });
+                });
+        });
+
+    </script>
+
+    @*<script src="/js/embed.js"></script>*@
+
+}

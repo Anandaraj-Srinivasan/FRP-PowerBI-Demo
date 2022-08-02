@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29009.5
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Globomantics", "Globomantics\Globomantics.csproj", "{30FA9151-4E90-4415-A21C-DC696BD874E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Globomantics.PowerBI", "Globomantics.PowerBI\Globomantics.PowerBI.csproj", "{58587872-F097-49F4-A03B-BC14199EAB12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Globomantics.PowerBI", "Globomantics.PowerBI\Globomantics.PowerBI.csproj", "{58587872-F097-49F4-A03B-BC14199EAB12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCApp", "MVCApp\MVCApp.csproj", "{90293B3A-E39E-43EE-B1DD-B58869F67C32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{58587872-F097-49F4-A03B-BC14199EAB12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58587872-F097-49F4-A03B-BC14199EAB12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58587872-F097-49F4-A03B-BC14199EAB12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90293B3A-E39E-43EE-B1DD-B58869F67C32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90293B3A-E39E-43EE-B1DD-B58869F67C32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90293B3A-E39E-43EE-B1DD-B58869F67C32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90293B3A-E39E-43EE-B1DD-B58869F67C32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

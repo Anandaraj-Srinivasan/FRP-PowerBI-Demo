@@ -22,6 +22,9 @@ namespace Globomantics
             services.AddHttpContextAccessor();
             services.AddMvc(o => o.EnableEndpointRouting = false);
 
+            services.AddCors();
+
+
             // Azure AD Token Generation
             services.Configure<AzureADConfiguration>(Configuration.GetSection(nameof(AzureADConfiguration)));
             services.AddTransient<IAzureTokenGenerator, AzureTokenGenerator>();
@@ -46,6 +49,8 @@ namespace Globomantics
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             app.UseMvc(routes =>
             {

@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "jquery": "^3.6.0",
+    "jquery-powerbi": "^1.0.0-beta.4",
+    "powerbi": "^1.0.2",
+    "powerbi-report-authoring": "^1.1.3"
+  }
+}

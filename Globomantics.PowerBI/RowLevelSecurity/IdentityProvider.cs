@@ -110,6 +110,9 @@ namespace Globomantics.PowerBI.RowLevelSecurity
         // This would normally be provided by HttpContext.User.Identity (or similar)
         private string GetCurrentUserName()
         {
+            //To Uncomment for Development
+            //return "anand";
+
             var auth = _httpContextAccessor.HttpContext.Request.Cookies["demoAuth"];
             return Base64UrlEncoder.Decode(auth);
         }
